@@ -1,0 +1,43 @@
+- name: Host Prerequisites
+  hosts: zookeeper
+  tasks:
+  - import_role:
+      name: confluent_prerequisites
+
+- name: Zookeeper Provisioning
+  hosts: zookeeper
+  tags: zookeeper
+  tasks:
+  - import_role:
+      name: confluent_zookeeper
+
+- name: Kafka Broker Provisioning
+  hosts: kafka_broker
+  tags: kafka_broker
+  tasks:
+  - import_role:
+      name: confluent_kafka_broker
+
+- name: Schema Registry Provisioning
+  hosts: schema_registry
+  tasks:
+  - import_role:
+      name: confluent_schema_registry
+
+- name: Kafta Connect Provisioning
+  hosts: kafka_connect
+  tasks:
+  - import_role:
+      name: confluent_kafka_connect
+      
+- name: Kafka Rest Provisioning
+  hosts: kafka_rest
+  tasks:
+  - import_role:
+      name: confluent_kafka_rest
+      
+- name: Control Center Provisioning
+  hosts: control_center
+  tasks:
+  - import_role:
+      name: confluent_control_center
